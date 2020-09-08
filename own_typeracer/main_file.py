@@ -1,4 +1,5 @@
-from words_file import WordFile
+
+from own_typeracer.words_file import WordFile
 import pygame
 import sys
 import random
