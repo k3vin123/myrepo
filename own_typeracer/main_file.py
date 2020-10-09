@@ -37,7 +37,14 @@ class Settings:
         self.numbers_with_shift = {"1" : "!", "2": "\"", "3": "#", "4": "¤", "5": "%", "6":"&", "7":"/", "8":"(","9":")", "0":"="}
         # uk keyboard to swedish translation
         self.special_character_convergence = {"-": "+", ";":"ö","\'":"ä", "[":"å","\\":"\'","/":"-"}
-
+        self.characters_with_shift = {
+                                      'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', 'e': 'E', 'f': 'F', 'g': 'G', 'h': 'H',
+                                      'i': 'I', 'j': 'J', 'k': 'K', 'l': 'L', 'm': 'M', 'n': 'N', 'o': 'O', 'p': 'P',
+                                      'q': 'Q', 'r': 'R', 's': 'S', 't': 'T', 'u': 'U', 'v': 'V', 'w': 'W', 'x': 'X',
+                                      'y': 'Y', 'z': 'Z', 'å': 'Å', 'ä': 'Ä', 'ö': 'Ö', "1" : "!", "2": "\"", "3": "#",
+                                      "4": "¤", "5": "%", "6":"&", "7":"/", "8":"(","9":")", "0":"=", "+": "?",
+                                      "." : ":", "," : ";", "-" : "_", "\'" : "*"
+                                      }
 class TypeRacer(Settings):
     def __init__(self):
         super().__init__()
@@ -141,22 +148,20 @@ class TypeRacer(Settings):
 
                     self.pause = False
                 key = pygame.key.get_pressed()
+                pressed_key = chr(event.key)
+                if pressed_key in self.special_character_convergence:
+                    pressed_key = self.special_character_convergence[pressed_key]
+
+                if (key[303] or key[304]):
+                    if pressed_key not in self.characters_with_shift:
+                        break
+                    pressed_key = self.characters_with_shift[pressed_key]
 
 
-                if key[ord(self.current_key.lower())] or (event.key == 92):
-                    # ascii number for / is 92 but is at the position of '
-                    # the postion of ' on a swedish keyboard gives /
-                    
-                    if (key[303] or key[304]):
+                print(pressed_key)
 
-                        if self.current_key.islower():
-                            break
-                    else:
-                        # check if upper
-                        if self.current_key.isupper():
-                            break
-
-                    # right key pressed
+                if pressed_key == self.current_key:
+                    #right key pressed
                     self.move_back = 0
                     self.animation = True
                     self.text_position += 1
