@@ -85,9 +85,9 @@ class HandleTime:
     def reset_time(self):
         self.display_time = "00:00:00"
         self.total_seconds = 0
-        self.stop_seconds = 59
+        self.stop_seconds = 0
         self.seconds = 0
-        self.minutes = 59
+        self.minutes = 0
         self.hours = 0
         self.destination = 60 # next target in total_seconds
         self.initial_time = time()
