@@ -158,7 +158,7 @@ class TypeRacer(Settings):
                     pressed_key = self.characters_with_shift[pressed_key]
 
 
-                print(pressed_key)
+    
 
                 if pressed_key == self.current_key:
                     #right key pressed
