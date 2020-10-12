@@ -1,10 +1,13 @@
-import pygame
+low = 97
+upp = 65
+let_in_alpha = 26
+dict = {}
 
-screen = pygame.display.set_mode((100, 100))
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            print(event.key)
+for i in range(26):
+    dict[chr(low + i)] = chr(upp + i)
+
+print(dict)
+
+#97 --> a
+#122 --> z
+#65 --> A
